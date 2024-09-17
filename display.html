@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Display</title>
+</head>
+<body>
+  <h1>Original</h1>
+  <img id="originalImage" src="" alt="Original Image">
+
+  <h1>Edited</h1>
+  <img id="editedImage" src="" alt="Edited Image">
+
+  <script>
+    var uploadedImage = localStorage.getItem('uploadedImage');
+    document.getElementById('originalImage').src = uploadedImage;
+    document.getElementById('editedImage').src = uploadedImage; // You can edit this line to use a different edited image if needed
+  </script>
+</body>
+</html>
