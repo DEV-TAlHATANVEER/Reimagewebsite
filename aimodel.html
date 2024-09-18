@@ -252,8 +252,28 @@
         const imageBase64 = await toBase64(imageFile);
 
         // Create the JSON object to send
+        const promptData = {
+        message: `Refine the following prompt for editing the website UI/UX using this prompt: ${prompt} Focus only on improving layout, colors, and modern design elements without altering the overall structure. Avoid radical changes unless specified with 4k results. Original user.use high quality images and prompt len must be in 75 words` // Send only the user prompt for refinement
+      };
+
+
+      const responserefine = await fetch('https://4931-216-144-178-146.ngrok-free.app/ask', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(promptData)
+      });
+
+      const responseData = await responserefine.json();
+      const refinedPrompt = responseData.response;
+
+      // // Use the refined prompt in the next step (e.g., Kandinsky API)
+      // console.log(refinedPrompt);
+      
+       
         const data = {
-          prompt,
+          prompt: refinedPrompt,
           negative_prompt: negativePrompt,
           strength,
           height,
